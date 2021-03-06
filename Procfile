@@ -1,4 +1,4 @@
 
-web: python pyserver.py
-worker: pipenv shell && python webhook-bot.py
+web: python webhook-bot.py
+
 
