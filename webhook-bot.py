@@ -38,8 +38,7 @@ app = Flask(__name__)
 # Create root to easily let us know its on/working.
 @app.route('/')
 def root():
-    tok = get_token()
-    return tok
+    return ""
 
 
 @app.route('/webhook', methods=['POST'])
