@@ -43,8 +43,7 @@ def send_order(data):
     positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
     # print(positions.result())
 
-    # if an open order already exists, and this is a buy order,
-    # do nothing
+    # close open positions before opening new positions
 
     if data['move'] == 'Short':
         if data['side'] == 'Sell':
