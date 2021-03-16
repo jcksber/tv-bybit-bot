@@ -43,7 +43,7 @@ def send_order(data):
     positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
     # print(positions.result())
 
-    # close open positions before opening new positions
+    # close open positions before opening new positions 
 
     if data['move'] == 'Short':
         if data['side'] == 'Sell':
