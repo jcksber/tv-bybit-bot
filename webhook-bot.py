@@ -48,7 +48,7 @@ def webhook():
         data = parse_webhook(request.get_data(as_text=True))
         # Check that the key is correct
         if get_token() == data['key']:
-            print(' [Alert Received] ')
+            print(' ---------- TradingView Alert Received!! ---------- ')
             if data['move'] == 'Long':
                 send_long_order(data)
             else:
