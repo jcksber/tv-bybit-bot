@@ -28,10 +28,10 @@ def calc_price(given_price):
     return price
 
 
-def send_order(data):
+def send_long_order(data):
 
     """
-    This function sends the order to the exchange.
+    This function sends long orders to the exchange.
     :param data: python dict, with keys as the API parameters.
     :return: the response from the exchange.
     """
@@ -40,51 +40,73 @@ def send_order(data):
 
     client = bybit.bybit(test=True, api_key=key, api_secret=sec)
 
-    positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
-    # print(positions.result())
+    #positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
 
-    # close open positions before opening new positions 
+    if data['side'] == 'Buy':
+        order = client.Order.Order_new(
+                        side='Buy',
+                        symbol=data['symbol'],
+                        order_type=data['type'],
+                        qty=data['amount'],
+                        price=calc_price(data['price']),
+                        time_in_force="GoodTillCancel")
+    else:
+        order = client.Order.Order_new(
+                        reduce_only=True,
+                        side='Sell',
+                        symbol=data['symbol'],
+                        order_type=data['type'],
+                        qty=data['amount'],
+                        price=calc_price(data['price']),
+                        time_in_force="GoodTillCancel")
 
-    if data['move'] == 'Short':
-        if data['side'] == 'Sell':
-            order = client.Order.Order_new(
-                            side='Sell',
-                            symbol=data['symbol'],
-                            order_type=data['type'],
-                            qty=data['amount'],
-                            price=calc_price(data['price']),
-                            time_in_force="GoodTillCancel")
-        else:
-            order = client.Order.Order_new(
-                            reduce_only=True,
-                            side='Buy',
-                            symbol=data['symbol'],
-                            order_type=data['type'],
-                            qty=data['amount'],
-                            price=calc_price(data['price']),
-                            time_in_force="GoodTillCancel")
-    else: # LONG
-        if data['side'] == 'Buy':
-            order = client.Order.Order_new(
-                            side='Buy',
-                            symbol=data['symbol'],
-                            order_type=data['type'],
-                            qty=data['amount'],
-                            price=calc_price(data['price']),
-                            time_in_force="GoodTillCancel")
-        else:
-            order = client.Order.Order_new(
-                            reduce_only=True,
-                            side='Sell',
-                            symbol=data['symbol'],
-                            order_type=data['type'],
-                            qty=data['amount'],
-                            price=calc_price(data['price']),
-                            time_in_force="GoodTillCancel")
+def send_short_order(data):
+    """
+    This function sends short orders to the exchange.
+    :param data: python dict, with keys as the API parameters.
+    :return: the response from the exchange.
+    """
+    key = "BMeteBHPvmdrXMXaN2"
+    sec = "k8uULmdmdeTaNo0mnxEF2ohGzRq39K1TlwTX"
 
+    client = bybit.bybit(test=True, api_key=key, api_secret=sec)
 
+    #positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
 
+    if data['side'] == 'Sell':
+        order = client.Order.Order_new(
+                        side='Sell',
+                        symbol=data['symbol'],
+                        order_type=data['type'],
+                        qty=data['amount'],
+                        price=calc_price(data['price']),
+                        time_in_force="GoodTillCancel")
+    else:
+        order = client.Order.Order_new(
+                        reduce_only=True,
+                        side='Buy',
+                        symbol=data['symbol'],
+                        order_type=data['type'],
+                        qty=data['amount'],
+                        price=calc_price(data['price']),
+                        time_in_force="GoodTillCancel")
 
 
     print("ORDER RESULT")
     print(order.result())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
