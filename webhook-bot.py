@@ -41,7 +41,7 @@ def root():
     return ""
 
 
-@app.route('/long', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
         # Parse the string data from tradingview into a python dict
@@ -49,28 +49,31 @@ def webhook():
         # Check that the key is correct
         if get_token() == data['key']:
             print(' [Alert Received] ')
-            send_long_order(data)
+            if data['move'] == 'Long':
+                send_long_order(data)
+            else:
+                send_short_order(data)
             return '', 200
         else:
             abort(403)
     else:
         abort(400)
 
-@app.route('/short', methods=['POST'])
-def webhook():
-    if request.method == 'POST':
-        # Parse the string data from tradingview into a python dict
-        data = parse_webhook(request.get_data(as_text=True))
-        # Check that the key is correct
-        if get_token() == data['key']:
-            print(' [Alert Received] ')
-            print('POST Received:', data)
-            send_short_order(data)
-            return '', 200
-        else:
-            abort(403)
-    else:
-        abort(400)
+# @app.route('/short', methods=['POST'])
+# def webhook():
+#     if request.method == 'POST':
+#         # Parse the string data from tradingview into a python dict
+#         data = parse_webhook(request.get_data(as_text=True))
+#         # Check that the key is correct
+#         if get_token() == data['key']:
+#             print(' [Alert Received] ')
+#             print('POST Received:', data)
+#             send_short_order(data)
+#             return '', 200
+#         else:
+#             abort(403)
+#     else:
+#         abort(400)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
