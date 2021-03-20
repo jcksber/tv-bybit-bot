@@ -41,7 +41,7 @@ def send_long_order(data):
     client = bybit.bybit(test=True, api_key=key, api_secret=sec)
 
     #positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
-
+    print(' Executing long... ')
     if data['side'] == 'Buy':
         order = client.Order.Order_new(
                         side='Buy',
@@ -60,6 +60,11 @@ def send_long_order(data):
                         price=calc_price(data['price']),
                         time_in_force="GoodTillCancel")
 
+    # print what happened damn it
+    print("ORDER RESULT")
+    print(order.result())
+
+
 def send_short_order(data):
     """
     This function sends short orders to the exchange.
@@ -72,7 +77,7 @@ def send_short_order(data):
     client = bybit.bybit(test=True, api_key=key, api_secret=sec)
 
     #positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
-
+    print(' Executing short... ')
     if data['side'] == 'Sell':
         order = client.Order.Order_new(
                         side='Sell',
@@ -91,9 +96,11 @@ def send_short_order(data):
                         price=calc_price(data['price']),
                         time_in_force="GoodTillCancel")
 
-
+    # print what happened damn it
     print("ORDER RESULT")
     print(order.result())
+
+
 
 
 
