@@ -66,8 +66,8 @@ def send_short_order(data):
     :param data: python dict, with keys as the API parameters.
     :return: the response from the exchange.
     """
-    key = "BMeteBHPvmdrXMXaN2"
-    sec = "k8uULmdmdeTaNo0mnxEF2ohGzRq39K1TlwTX"
+    key = "J3LPXXcKthvHKsVR5x"
+    sec = "pcCMmVTZOcVNFiEplakxcRwAFeL3hB1lzHmx"
 
     client = bybit.bybit(test=True, api_key=key, api_secret=sec)
 
