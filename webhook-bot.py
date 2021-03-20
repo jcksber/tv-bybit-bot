@@ -9,7 +9,7 @@ expect to update this as much as possible to add features as they become availab
 Until then, if you run into any bugs let me know!
 """
 
-from actions import send_order, parse_webhook
+from actions import send_short_order, send_long_order, parse_webhook
 from auth import get_token
 from flask import Flask, request, abort
 import os
