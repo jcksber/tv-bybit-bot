@@ -50,7 +50,10 @@ def webhook():
         if get_token() == data['key']:
             print(' [Alert Received] ')
             print('POST Received:', data)
-            send_order(data)
+            if data['move'] == 'Long':
+                send_long_order(data)
+            else:
+                send_short_order(data)
             return '', 200
         else:
             abort(403)
