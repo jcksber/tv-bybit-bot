@@ -35,10 +35,10 @@ def send_long_order(data):
     :param data: python dict, with keys as the API parameters.
     :return: the response from the exchange.
     """
-    key = "cTiQyNqVmw2XOKJfg4"
-    sec = "voULcJBEo9RhUxxuKOoGxl5g1p4pNUqnITL5"
+    Lkey = "cTiQyNqVmw2XOKJfg4"
+    Lsec = "voULcJBEo9RhUxxuKOoGxl5g1p4pNUqnITL5"
 
-    client = bybit.bybit(test=True, api_key=key, api_secret=sec)
+    client = bybit.bybit(test=True, api_key=Lkey, api_secret=Lsec)
 
     #positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
     print(' Executing long... ')
@@ -71,10 +71,10 @@ def send_short_order(data):
     :param data: python dict, with keys as the API parameters.
     :return: the response from the exchange.
     """
-    key = "J3LPXXcKthvHKsVR5x"
-    sec = "pcCMmVTZOcVNFiEplakxcRwAFeL3hB1lzHmx"
+    Skey = "J3LPXXcKthvHKsVR5x"
+    Ssec = "pcCMmVTZOcVNFiEplakxcRwAFeL3hB1lzHmx"
 
-    client = bybit.bybit(test=True, api_key=key, api_secret=sec)
+    client = bybit.bybit(test=True, api_key=Skey, api_secret=Ssec)
 
     #positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
     print(' Executing short... ')
