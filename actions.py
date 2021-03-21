@@ -60,8 +60,6 @@ def send_long_order(data):
                         price=calc_price(data['price']),
                         time_in_force="GoodTillCancel")
 
-    # print what happened damn it
-    print("LONG ORDER RESULT")
     print(order.result())
 
 
@@ -95,9 +93,7 @@ def send_short_order(data):
                         qty=data['amount'],
                         price=calc_price(data['price']),
                         time_in_force="GoodTillCancel")
-
-    # print what happened damn it
-    print("SHORT ORDER RESULT")
+        
     print(order.result())
 
 
