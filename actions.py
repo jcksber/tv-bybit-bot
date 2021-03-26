@@ -35,8 +35,8 @@ def send_long_order(data):
     :param data: python dict, with keys as the API parameters.
     :return: the response from the exchange.
     """
-    Lkey = "cTiQyNqVmw2XOKJfg4"
-    Lsec = "voULcJBEo9RhUxxuKOoGxl5g1p4pNUqnITL5"
+    Lkey = "u4gO821uJ6ARsvJeKQ"
+    Lsec = "OkEJIlgS1cUxCtEbzUA1FWHc6yoYAsZLE617"
 
     client = bybit.bybit(test=True, api_key=Lkey, api_secret=Lsec)
     
