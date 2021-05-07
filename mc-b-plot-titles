@@ -1,0 +1,55 @@
+
+// WT Areas
+"WT Wave 1"
+ "WT Wave 2", 
+// VWAP
+"VWAP", color = colorYellow
+
+// MFI AREA
+"RSI+MFI Area"
+
+// WT Div
+"WT Bearish Divergence"
+"WT Bullish Divergence"
+
+// WT 2nd Div
+"WT 2nd Bearish Divergence"
+"WT 2nd Bullish Divergence"
+
+// RSI
+"RSI"
+
+// RSI Div
+"RSI Bearish Divergence"
+"RSI Bullish Divergence"
+
+// Stochastic RSI
+"Stoch K", color = color.new(#21baf3, 0)
+"Stoch D", color = color.new(#673ab7, 60)
+stochFillColor = stochK >= stochD ? color.new(#21baf3, 75) : color.new(#673ab7, 60)
+fill(stochKplot, stochDplot, title="KD Fill", color=stochFillColor)
+
+// Stoch Div
+"Stoch Bearish Divergence"
+"Stoch Bullish Divergence"
+
+// Schaff Trend Cycle
+color = color.new(#673ab7, 25),"Schaff Trend Cycle 1"
+color = color.new(colorWhite, 50), "Schaff Trend Cycle 2"
+
+// Draw Overbought & Oversold lines
+"Over Bought Level 2", color = colorWhite
+"Over Bought Level 3", color = colorWhite
+"Over Sold Level 2", color = colorWhite
+
+
+// Sommi flag
+"Sommi higher VWAP", color = colorYellow
+
+
+// Circles
+"Buy and sell circle"
+
+
+
+
