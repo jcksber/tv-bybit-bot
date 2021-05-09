@@ -42,31 +42,14 @@ def send_long_order(data):
 
     print(' LONG RESULT ')
 
-    #if data['side'] == 'Buy':
-    price = calc_price(data['price'])
-    ts = 0.03 * price
-
     # Open position
     order = client.Order.Order_new(
                     side='Buy',
                     symbol=data['symbol'],
                     order_type=data['type'],
                     qty=data['amount'],
-                    price=price,
+                    price=None,
                     time_in_force="GoodTillCancel")
-    # Set trailing stop
-    client.Positions.Positions_tradingStop(
-                    symbol=data['symbol'], 
-                    trailing_stop=ts)
-    # else:
-    #     order = client.Order.Order_new(
-    #                     reduce_only=True,
-    #                     side='Sell',
-    #                     symbol=data['symbol'],
-    #                     order_type=data['type'],
-    #                     qty=data['amount'],
-    #                     price=calc_price(data['price']),
-    #                     time_in_force="GoodTillCancel")
 
     print(order.result())
 
@@ -103,8 +86,20 @@ def send_short_order(data):
 
     print(order.result())
 
+def set_trailing(data):
+    Lkey = "HOOTz1ETAGRInP0jJZ"
+    Lsec = "nedtaSftBjXfdEJaWfiDg2Zovp0Iy0U3ONwD"
 
-#positions = client.Positions.Positions_myPosition(symbol=data['symbol'])
+    client = bybit.bybit(test=True, api_key=Lkey, api_secret=Lsec)
+    priceObject = client.Positions.Positions_myPosition(symbol=data['symbol']).result()
+    price = priceObject[0]['result'][0]['data']['entry_price']
+    print("PRICE CHECK", price )
+    ts = str(0.03 * float(price))
+
+    trailing = client.Positions.Positions_tradingStop(
+                    symbol=data['symbol'], 
+                    trailing_stop=ts)
+    print(trailing.result())
 
 
 
