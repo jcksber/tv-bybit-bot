@@ -35,17 +35,19 @@ def send_long_order(data):
     :param data: python dict, with keys as the API parameters.
     :return: the response from the exchange.
     """
-    Lkey = "7N0eDY2fs2jckiUppF"
-    Lsec = "rcgypvHUzR0JXbpYTKjnDFpO05zqcT5GqNDb"
+    Lkey = "HOOTz1ETAGRInP0jJZ"
+    Lsec = "nedtaSftBjXfdEJaWfiDg2Zovp0Iy0U3ONwD"
 
     client = bybit.bybit(test=True, api_key=Lkey, api_secret=Lsec)
 
     print(' LONG RESULT ')
 
+    console.log(client)
+
     #if data['side'] == 'Buy':
     price = calc_price(data['price'])
     ts = 0.03 * price
-    
+
     # Open position
     order = client.Order.Order_new(
                     side='Buy',
