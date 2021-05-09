@@ -41,23 +41,32 @@ def send_long_order(data):
     client = bybit.bybit(test=True, api_key=Lkey, api_secret=Lsec)
 
     print(' LONG RESULT ')
-    if data['side'] == 'Buy':
-        order = client.Order.Order_new(
-                        side='Buy',
-                        symbol=data['symbol'],
-                        order_type=data['type'],
-                        qty=data['amount'],
-                        price=calc_price(data['price']),
-                        time_in_force="GoodTillCancel")
-    else:
-        order = client.Order.Order_new(
-                        reduce_only=True,
-                        side='Sell',
-                        symbol=data['symbol'],
-                        order_type=data['type'],
-                        qty=data['amount'],
-                        price=calc_price(data['price']),
-                        time_in_force="GoodTillCancel")
+
+    #if data['side'] == 'Buy':
+    price = calc_price(data['price'])
+    ts = 0.03 * price
+    
+    # Open position
+    order = client.Order.Order_new(
+                    side='Buy',
+                    symbol=data['symbol'],
+                    order_type=data['type'],
+                    qty=data['amount'],
+                    price=price,
+                    time_in_force="GoodTillCancel")
+    # Set trailing stop
+    client.Positions.Positions_tradingStop(
+                    symbol=data['symbol'], 
+                    trailing_stop=ts)
+    # else:
+    #     order = client.Order.Order_new(
+    #                     reduce_only=True,
+    #                     side='Sell',
+    #                     symbol=data['symbol'],
+    #                     order_type=data['type'],
+    #                     qty=data['amount'],
+    #                     price=calc_price(data['price']),
+    #                     time_in_force="GoodTillCancel")
 
     print(order.result())
 
