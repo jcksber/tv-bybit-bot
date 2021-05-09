@@ -42,8 +42,6 @@ def send_long_order(data):
 
     print(' LONG RESULT ')
 
-    console.log(client)
-
     #if data['side'] == 'Buy':
     price = calc_price(data['price'])
     ts = 0.03 * price
