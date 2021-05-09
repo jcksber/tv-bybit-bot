@@ -65,7 +65,7 @@ def set_trailing(data):
     priceObject = read_client.Positions.Positions_myPosition(symbol=data['symbol']).result()
     price = priceObject[0]['result'][0]['data']['entry_price']
     print("PRICE CHECK", price)
-    ts = str(0.03 * float(price))
+    ts = str(0.0215 * float(price))
 
     trailing = pos_client.Positions.Positions_tradingStop(
                     symbol=data['symbol'], 
