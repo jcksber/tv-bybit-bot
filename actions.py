@@ -58,7 +58,7 @@ def send_long_order(data):
                     price=None,
                     time_in_force="GoodTillCancel")
 
-    print(order.result()[0])
+    print(order.result())
 
 
 def set_trailing(data):
