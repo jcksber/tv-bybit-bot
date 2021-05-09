@@ -9,7 +9,7 @@ expect to update this as much as possible to add features as they become availab
 Until then, if you run into any bugs let me know!
 """
 
-from actions import send_short_order, send_long_order, parse_webhook, set_trailing
+from actions import send_long_order, parse_webhook, set_trailing
 from auth import get_token
 from flask import Flask, request, abort
 import os
@@ -53,7 +53,8 @@ def webhook():
                 send_long_order(data)
                 set_trailing(data)
             else:
-                send_short_order(data)
+                #send_short_order(data)
+                print("not shorting right now!")
             return '', 200
         else:
             abort(403)
